@@ -45,11 +45,10 @@ app-videojuegos/
 ## Reparto de tareas
 
 ### Óscar
-- Crear el repositorio en GitHub e invitar al resto del equipo.
+- Crear el repositorio en GitHub y su  `README.md` e invitar al resto del equipo.
 - Etapa 1 (listas): `etapas/etapa1_listas.py`.
 - Funciones de estadísticas en `gestor/consultas.py`: total de juegos, recuento por género, juego más antiguo y más reciente.
 - Catálogo inicial con al menos cinco juegos y bucle principal de `main.py`.
-- Configurar `.gitignore` y estructurar el `README.md` inicial.
 
 ### Mario
 - Etapa 2 (tuplas): `etapas/etapa2_tuplas.py`.
