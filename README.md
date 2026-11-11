@@ -5,7 +5,7 @@ Práctica Gestión de Videojuegos (Grupo 2).
 ## Estructura del proyecto
 
 ```
-gestor-videojuegos/
+app-videojuegos/
 ├── main.py
 ├── gestor/
 │   ├── __init__.py
