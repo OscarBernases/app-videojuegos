@@ -16,17 +16,29 @@ def contar_por_genero(catalogo):
 
 
 def videojuego_mas_antiguo(catalogo):
-    # Devuelve el videojuego con menor año, o None si el catálogo está vacío.
     if not catalogo:
         return None
-    return min(catalogo.values(), key=lambda juego: juego["anio"])["titulo"]
+        
+    mas_antiguo = None
+    
+    for juego in catalogo.values():
+        if mas_antiguo is None or juego["anio"] < mas_antiguo["anio"]:
+            mas_antiguo = juego
+            
+    return mas_antiguo["titulo"]
 
 
 def videojuego_mas_reciente(catalogo):
-    # Devuelve el videojuego con mayor año, o None si el catálogo está vacío.
     if not catalogo:
         return None
-    return max(catalogo.values(), key=lambda juego: juego["anio"])["titulo"]
+        
+    mas_reciente = None
+    
+    for juego in catalogo.values():
+        if mas_reciente is None or juego["anio"] > mas_reciente["anio"]:
+            mas_reciente = juego
+            
+    return mas_reciente["titulo"]
 
 
 def test():
