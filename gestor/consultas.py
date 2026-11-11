@@ -19,14 +19,14 @@ def videojuego_mas_antiguo(catalogo):
     # Devuelve el videojuego con menor año, o None si el catálogo está vacío.
     if not catalogo:
         return None
-    return min(catalogo.values(), key=lambda juego: juego["anio"])
+    return min(catalogo.values(), key=lambda juego: juego["anio"])["titulo"]
 
 
 def videojuego_mas_reciente(catalogo):
     # Devuelve el videojuego con mayor año, o None si el catálogo está vacío.
     if not catalogo:
         return None
-    return max(catalogo.values(), key=lambda juego: juego["anio"])
+    return max(catalogo.values(), key=lambda juego: juego["anio"])["titulo"]
 
 
 def test():
