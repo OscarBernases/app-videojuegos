@@ -1,12 +1,12 @@
 # Normalizamos los titulos
-def normalizarTitulo(titulo):
-    tituloLimpio = titulo.strip().lower().split()
+def normalizar_titulo(titulo):
+    titulo_limpio = titulo.strip().lower().split()
     # concatenar los titulos con un espacio en blanco entre palabras
-    return " ".join(tituloLimpio) 
+    return " ".join(titulo_limpio) 
 
 # Validamos
-def validarDatosJuego(titulo,anio,generos):
-    tit = normalizarTitulo(titulo)
+def validar_datos_juego(titulo,anio,generos):
+    tit = normalizar_titulo(titulo)
     if (tit == ""):
         return False
     if (type(anio) is not int or anio <= 0):
@@ -14,11 +14,11 @@ def validarDatosJuego(titulo,anio,generos):
     return len(generos) > 0
 
 # 1. CREAR 
-def agregarVideojuego(catalogo, titulo, anio, generos):
-    if not validarDatosJuego(titulo, anio, generos):
+def agregar_videojuego(catalogo, titulo, anio, generos):
+    if not validar_datos_juego(titulo, anio, generos):
         return False
     
-    txt = normalizarTitulo(titulo)
+    txt = normalizar_titulo(titulo)
 
     if txt in catalogo:
         return False  # No permitir titulos duplicados
@@ -32,39 +32,39 @@ def agregarVideojuego(catalogo, titulo, anio, generos):
     return True
 
 # 2. LEER 
-def obtenerVideojuego(catalogo, titulo):
-    clave = normalizarTitulo(titulo)
+def obtener_videojuego(catalogo, titulo):
+    clave = normalizar_titulo(titulo)
 
     return catalogo.get(clave, None)
 
 # 3. ACTUALIZAR 
-def actualizarVideojuego(catalogo, tituloActual, nuevoTitulo, nuevoAnio, nuevosGeneros):
-    claveActual = normalizarTitulo(tituloActual)
+def actualizar_videojuego(catalogo, titulo_actual, nuevo_titulo, nuevo_anio, nuevos_generos):
+    clave_actual = normalizar_titulo(titulo_actual)
 
-    if claveActual not in catalogo:
+    if clave_actual not in catalogo:
         return False
     
-    if not validarDatosJuego(nuevoTitulo, nuevoAnio, nuevosGeneros):
+    if not validar_datos_juego(nuevo_titulo, nuevo_anio, nuevos_generos):
         return False
     
-    nuevaClave = normalizarTitulo(nuevoTitulo)
+    nueva_clave = normalizar_titulo(nuevo_titulo)
 
-    if nuevaClave != claveActual and nuevaClave in catalogo:
+    if nueva_clave != clave_actual and nueva_clave in catalogo:
         return False  # El nuevo titulo ya existe en otro juego
     
-    del catalogo[claveActual]
+    del catalogo[clave_actual]
 
-    catalogo[nuevaClave] = {
-        "titulo": nuevoTitulo.strip(),
-        "anio": nuevoAnio,
-        "generos": set(nuevosGeneros)
+    catalogo[nueva_clave] = {
+        "titulo": nuevo_titulo.strip(),
+        "anio": nuevo_anio,
+        "generos": set(nuevos_generos)
     }
 
     return True
 
 # 4. ELIMINAR 
-def eliminarVideojuego(catalogo, titulo):
-    clave = normalizarTitulo(titulo)
+def eliminar_videojuego(catalogo, titulo):
+    clave = normalizar_titulo(titulo)
 
     if clave not in catalogo:
         return False
