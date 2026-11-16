@@ -40,6 +40,62 @@ def videojuego_mas_reciente(catalogo):
             
     return mas_reciente["titulo"]
 
+def _normalizar(texto):
+    # Devuelve el texto en minúsculas y sin espacios sobrantes (también entre palabras).
+    return " ".join(texto.lower().split())
+
+
+def buscar_titulo_exacto(catalogo, titulo):
+    # Devuelve el videojuego con ese título exacto, o None si no existe.
+    titulo = _normalizar(titulo)
+
+    for juego in catalogo.values():
+        if _normalizar(juego["titulo"]) == titulo:
+            return juego
+
+    return None
+
+
+def buscar_por_titulo_parcial(catalogo, texto):
+    # Devuelve la lista de videojuegos cuyo título contiene el texto.
+    texto = _normalizar(texto)
+    resultados = []
+
+    if not texto:
+        return resultados
+
+    for juego in catalogo.values():
+        if texto in _normalizar(juego["titulo"]):
+            resultados.append(juego)
+
+    return resultados
+
+
+def filtrar_por_genero(catalogo, genero):
+    # Devuelve la lista de videojuegos que pertenecen a ese género.
+    genero = _normalizar(genero)
+    resultados = []
+
+    if not genero:
+        return resultados
+
+    for juego in catalogo.values():
+        generos_juego = {_normalizar(g) for g in juego["generos"]}
+        if genero in generos_juego:
+            resultados.append(juego)
+
+    return resultados
+
+
+def filtrar_por_rango_anios(catalogo, anio_min, anio_max):
+    # Devuelve los videojuegos lanzados entre anio_min y anio_max (ambos incluidos).
+    resultados = []
+
+    for juego in catalogo.values():
+        if anio_min <= juego["anio"] <= anio_max:
+            resultados.append(juego)
+
+    return resultados
 
 def test():
     # Función para testear pruebas rápidas de las funciones de estadísticas.
