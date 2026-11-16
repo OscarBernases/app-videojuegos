@@ -40,17 +40,17 @@ def videojuego_mas_reciente(catalogo):
             
     return mas_reciente["titulo"]
 
-def _normalizar(texto):
+def normalizar(texto):
     # Devuelve el texto en minúsculas y sin espacios sobrantes (también entre palabras).
     return " ".join(texto.lower().split())
 
 
 def buscar_titulo_exacto(catalogo, titulo):
     # Devuelve el videojuego con ese título exacto, o None si no existe.
-    titulo = _normalizar(titulo)
+    titulo = normalizar(titulo)
 
     for juego in catalogo.values():
-        if _normalizar(juego["titulo"]) == titulo:
+        if normalizar(juego["titulo"]) == titulo:
             return juego
 
     return None
@@ -58,14 +58,14 @@ def buscar_titulo_exacto(catalogo, titulo):
 
 def buscar_por_titulo_parcial(catalogo, texto):
     # Devuelve la lista de videojuegos cuyo título contiene el texto.
-    texto = _normalizar(texto)
+    texto = normalizar(texto)
     resultados = []
 
     if not texto:
         return resultados
 
     for juego in catalogo.values():
-        if texto in _normalizar(juego["titulo"]):
+        if texto in normalizar(juego["titulo"]):
             resultados.append(juego)
 
     return resultados
@@ -73,14 +73,14 @@ def buscar_por_titulo_parcial(catalogo, texto):
 
 def filtrar_por_genero(catalogo, genero):
     # Devuelve la lista de videojuegos que pertenecen a ese género.
-    genero = _normalizar(genero)
+    genero = normalizar(genero)
     resultados = []
 
     if not genero:
         return resultados
 
     for juego in catalogo.values():
-        generos_juego = {_normalizar(g) for g in juego["generos"]}
+        generos_juego = {normalizar(g) for g in juego["generos"]}
         if genero in generos_juego:
             resultados.append(juego)
 
